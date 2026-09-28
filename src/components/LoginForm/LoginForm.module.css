@@ -1,0 +1,132 @@
+/* Экран входа: карточка на фоне темы. */
+
+.page {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: var(--size-24);
+  background:
+    radial-gradient(900px 500px at 50% -20%, var(--accent-soft) 0%, transparent 60%),
+    var(--app-bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-16);
+  padding: var(--size-32);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-modal);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--size-14);
+}
+
+.brandMark {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.subtitle {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.input {
+  padding: var(--size-10) var(--size-14);
+  border: none;
+  border-radius: var(--radius-m);
+  background: var(--input-bg);
+  color: var(--text-primary);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input::placeholder {
+  color: var(--text-mute);
+}
+
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 var(--outline-width) var(--accent);
+}
+
+.hint,
+.endpoint {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.hint a {
+  color: var(--accent);
+}
+
+.endpoint code {
+  font-size: 11px;
+  padding: 1px var(--size-4);
+  border-radius: var(--size-6);
+  background: var(--accent-soft);
+  color: var(--accent);
+  word-break: break-all;
+}
+
+.error {
+  margin: 0;
+  padding: var(--size-10) var(--size-12);
+  border-radius: var(--radius-m);
+  background: var(--error-bg);
+  color: var(--text-negative);
+  font-size: 13px;
+}
+
+.submit {
+  padding: var(--size-12) var(--size-16);
+  border: none;
+  border-radius: var(--radius-m);
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

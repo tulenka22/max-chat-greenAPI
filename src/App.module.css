@@ -1,0 +1,19 @@
+/*
+ * Двухколоночная раскладка по сетке (Grid):
+ *   60px — узкая панель навигации, 320px — сайдбар, остальное — область чата.
+ * Лента и список чатов прокручиваются независимо (свои overflow-y).
+ */
+.workspace {
+  display: grid;
+  grid-template-columns: 60px 320px minmax(0, 1fr);
+  height: 100dvh;
+  background: var(--app-bg);
+  overflow: hidden;
+}
+
+/* Базовая адаптивность: на мобильных остаётся только чат. */
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

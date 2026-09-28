@@ -1,0 +1,55 @@
+/* Узкая панель навигации слева. */
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-8);
+  padding: var(--size-12) 0;
+  background: var(--rail);
+  border-right: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-8);
+  flex: 1;
+}
+
+.tab {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.tab:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tab:active {
+  transform: scale(0.92);
+}
+
+.tab[data-active='true'] {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* На мобильных панель скрываем — остаётся только чат. */
+@media (max-width: 900px) {
+  .rail {
+    display: none;
+  }
+}

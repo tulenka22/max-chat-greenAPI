@@ -1,0 +1,296 @@
+/* Окно чата: шапка, лента с фоновым паттерном, поле ввода-«пилюля». */
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  padding: var(--size-32);
+  background: var(--chat-bg);
+}
+
+.placeholderText {
+  max-width: 340px;
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.window {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--panel);
+}
+
+/* Шапка чата. */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--size-12);
+  flex: 0 0 64px;
+  padding: 0 var(--size-16);
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  color: var(--avatar-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Реальная фотография собеседника в шапке чата. */
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.headerText {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.status {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.headerAction {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-s);
+  background: transparent;
+  color: var(--text-secondary);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.headerAction:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* Кнопка «назад» видна только на мобильных. */
+.headerAction[data-role='back'] {
+  display: none;
+}
+
+.warning,
+.error {
+  display: flex;
+  align-items: center;
+  gap: var(--size-10);
+  margin: 0;
+  padding: var(--size-8) var(--size-16);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.error {
+  background: var(--error-bg);
+  color: var(--text-negative);
+}
+
+.error > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.errorClose {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 0 var(--size-6);
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  line-height: 1;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Лента сообщений: фон чата + едва заметный паттерн из иконок. */
+.stream {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--size-16) var(--size-20);
+  background: var(--chat-bg);
+}
+
+.stream::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--pattern-img);
+  background-size: 220px 220px;
+  opacity: var(--pattern-opacity);
+  pointer-events: none;
+}
+
+.stream > * {
+  position: relative;
+  z-index: 1;
+}
+
+.emptyStream {
+  margin: var(--size-24) auto;
+  max-width: 320px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Разделитель дат: по центру, мелким текстом на полупрозрачной подложке. */
+.daySeparator {
+  display: flex;
+  justify-content: center;
+  margin: var(--size-12) 0;
+}
+
+.dayPill {
+  padding: var(--size-4) var(--size-12);
+  border-radius: 999px;
+  background: var(--date-pill);
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Поле ввода: «пилюля» с иконками (смайлик, скрепка, микрофон) + кнопка отправки. */
+.composer {
+  display: flex;
+  align-items: center;
+  gap: var(--size-10);
+  flex: 0 0 auto;
+  padding: var(--size-12) var(--size-16);
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+}
+
+.pill {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+  min-width: 0;
+  gap: 2px;
+  padding: var(--size-6) var(--size-8) var(--size-6) var(--size-14);
+  border-radius: var(--radius-pill);
+  background: var(--input-bg);
+  transition: box-shadow 0.2s ease;
+}
+
+.pill:focus-within {
+  box-shadow: 0 0 0 var(--outline-width) var(--accent);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  min-height: 28px;
+  max-height: 132px;
+  padding: var(--size-4) 0;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  resize: none;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-mute);
+}
+
+.counter {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--text-negative);
+  white-space: nowrap;
+}
+
+.send {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.send:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.send:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Мобильная адаптация: показываем кнопку «назад», убираем часть действий. */
+@media (max-width: 900px) {
+  .window {
+    grid-column: 1 / -1;
+  }
+
+  .headerAction[data-role='back'] {
+    display: grid;
+  }
+
+  .actions {
+    gap: 0;
+  }
+
+  .stream {
+    padding: var(--size-12);
+  }
+}

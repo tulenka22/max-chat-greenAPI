@@ -1,0 +1,141 @@
+/* Модальное окно «Найти по номеру»: оверлей + центрированное окно. */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: var(--size-16);
+  background: var(--overlay);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: var(--size-24);
+  border-radius: var(--radius-l);
+  background: var(--panel);
+  box-shadow: var(--shadow-modal);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: var(--size-12);
+  right: var(--size-12);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: var(--input-bg);
+  color: var(--text-secondary);
+  font-size: 18px;
+  line-height: 1;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.close:hover {
+  background: var(--accent);
+  color: var(--text-on-accent);
+}
+
+.title {
+  margin: 0 0 var(--size-16);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.label {
+  display: block;
+  margin-bottom: var(--size-6);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Поле с флагом и кодом +7. */
+.phoneBox {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+  padding: 0 var(--size-12);
+  border-radius: var(--radius-m);
+  background: var(--modal-input);
+}
+
+.phoneBox:focus-within {
+  box-shadow: 0 0 0 var(--outline-width) var(--accent);
+}
+
+.code {
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 48px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  letter-spacing: 0.3px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-mute);
+}
+
+.error {
+  margin: var(--size-10) 0 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--text-negative);
+}
+
+.submit {
+  width: 100%;
+  height: 48px;
+  margin-top: var(--size-16);
+  border: none;
+  border-radius: var(--radius-m);
+  background: var(--accent);
+  color: var(--text-on-accent);
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.1s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.submit:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: var(--size-10) 0 0;
+  font-size: 12px;
+  color: var(--text-mute);
+  text-align: center;
+}

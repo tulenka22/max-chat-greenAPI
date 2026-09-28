@@ -1,0 +1,257 @@
+/* Боковая панель: заголовок, поиск, список чатов. Ширина 320px по ТЗ. */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-8);
+  padding: var(--size-12) var(--size-16);
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Круглая кнопка «+» акцентного цвета. */
+.add {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--text-on-accent);
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.add:hover {
+  background: var(--accent-hover);
+}
+
+.add:active {
+  transform: scale(0.94);
+}
+
+/* Поиск: радиус 10px, фон поля ввода. */
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--size-8);
+  margin: 0 var(--size-16) var(--size-10);
+  padding: 0 var(--size-12);
+  border-radius: var(--radius-input);
+  background: var(--input-bg);
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: var(--text-mute);
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 38px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: var(--text-mute);
+}
+
+/* Список чатов — прокручивается независимо от правой колонки. */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 var(--size-8) var(--size-8);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--size-10);
+  width: 100%;
+  padding: var(--size-10);
+  border: none;
+  border-radius: var(--radius-m);
+  background: transparent;
+  text-align: left;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.item:hover {
+  background: var(--list-hover);
+}
+
+.item[data-active='true'] {
+  background: var(--list-active);
+  box-shadow: var(--shadow-item);
+}
+
+/* Аватар: круглый, 50px. */
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--avatar-bg);
+  color: var(--avatar-text);
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* Реальная фотография собеседника вместо буквы-заглушки. */
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  gap: 1px;
+}
+
+.itemTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--size-8);
+}
+
+.itemTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemTime {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.itemPreview {
+  font-size: 13px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Бейдж непрочитанных: круг, акцент, белый текст. */
+.badge {
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.empty {
+  margin: var(--size-20) var(--size-8);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* Низ панели: статус подключения и выход. */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-8);
+  padding: var(--size-10) var(--size-16);
+  border-top: 1px solid var(--border);
+}
+
+.connection {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-6);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.connection::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-mute);
+}
+
+.connection[data-state='online']::before {
+  background: var(--text-positive);
+}
+
+.connection[data-state='connecting']::before {
+  background: var(--accent);
+}
+
+.connection[data-state='error']::before {
+  background: var(--text-negative);
+}
+
+.logout {
+  padding: var(--size-4) var(--size-8);
+  border: none;
+  border-radius: var(--radius-s);
+  background: transparent;
+  font-size: 12px;
+  color: var(--text-mute);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.logout:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/* На мобильных панель скрываем — остаётся только чат. */
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+}
